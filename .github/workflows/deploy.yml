@@ -31,4 +31,4 @@ jobs:
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         DB_PORT: ${{ secrets.DB_PORT }}
         
-      run: python backend/main.py
+      run: python streamlit_app.py
