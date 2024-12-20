@@ -182,7 +182,7 @@ def create_query(
                 today=today,
                 context="",
             )
-
+            # LLM 호출 및 출력 받기
             # LLM 호출 및 출력 받기
             output_message = llm.invoke(prefix)  # LLM 응답 (AIMessage 객체)
             output = output_message.content  # 문자열로 변환
