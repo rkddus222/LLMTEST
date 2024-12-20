@@ -23,7 +23,7 @@ def evaluate_user_question(user_question: str) -> str:
     prompt = ChatPromptTemplate.from_messages(
         [
             SystemMessage(
-                content=load_prompt("/backend/prompts/question_evaluation/main_v1.prompt")
+                content=load_prompt("backend/prompts/question_evaluation/main_v1.prompt")
             ),
             (
                 "human",
