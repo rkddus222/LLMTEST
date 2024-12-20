@@ -4,9 +4,9 @@ from langchain_core.messages import SystemMessage
 from backend.llm_models.model import llm
 from typing import List
 import psycopg2
-
 from .utils import load_prompt
 import re
+
 
 def evaluate_user_question(user_question: str) -> str:
     """사용자의 질문이 일상적인 대화문인지, 데이터 및 비즈니스와 관련된 질문인지를

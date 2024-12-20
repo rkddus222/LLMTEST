@@ -47,8 +47,9 @@ def load_prompt(prompt_path: str) -> str:
     Returns:
         str: 로드된 프롬프트 내용.
     """
-    with open(f"./{prompt_path}", "r", encoding="utf-8") as f:
+    with open(f"{prompt_path}", "r", encoding="utf-8") as f:
         prompt = f.read()
+
     return prompt
 
 
