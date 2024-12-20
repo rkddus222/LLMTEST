@@ -1,11 +1,9 @@
-from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.messages import SystemMessage
-from llm_models.model import llm
+from backend.llm_models.model import llm
 from typing import List
 import psycopg2
-from psycopg2 import sql
 
 from .utils import load_prompt
 import re

@@ -1,4 +1,4 @@
-from llm_models.model import llm, prompt
+from backend.llm_models.model import llm, prompt
 
 # Chain 생성
 chain = prompt | llm

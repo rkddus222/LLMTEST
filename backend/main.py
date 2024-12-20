@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
 
-from langgraph_.graph import make_graph, make_graph_for_test
+from langgraph_.graph import make_graph
 from langgraph_.utils import (
     get_runnable_config,
     extract_context_tables,
