@@ -1,7 +1,15 @@
 from langchain_community.chat_models import ChatOpenAI
+from dotenv import load_dotenv
+import os
 
-# OpenAI API 키 설정
-OPENAI_API_KEY = "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"
+# .env 파일 로드
+load_dotenv()
+
+# OpenAI API 키를 환경 변수에서 가져오기
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+if not OPENAI_API_KEY:
+    raise ValueError("환경 변수 OPENAI_API_KEY가 설정되지 않았습니다.")
 
 # GPT-4 모델 설정
 llm = ChatOpenAI(

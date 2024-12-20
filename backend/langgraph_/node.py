@@ -1,3 +1,4 @@
+import os
 from typing import TypedDict, List, Any
 from .task import (
     evaluate_user_question,
@@ -11,6 +12,9 @@ from .task import (
     execute_query,
 )
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # FAISS 객체는 serializable 하지 않아 Graph State에 넣어 놓을 수 없다.
 from .faiss_init import get_vector_stores
@@ -154,11 +158,11 @@ def query_creation(state: GraphState) -> GraphState:
     return state
 
 def get_query_result(state: GraphState) -> GraphState:
-    host = "dev.daquv.com"  # 데이터베이스 호스트 (로컬호스트 또는 IP 주소)
-    database = "llm"  # 데이터베이스 이름
-    user = "llm"  # 사용자 이름
-    password = "daquv123!@()"  # 비밀번호
-    port = 5432  # PostgreSQL 기본 포트
+    host = os.getenv("DB_HOST")
+    database = os.getenv("DB_DATABASE")
+    user = os.getenv("DB_USER")
+    password = os.getenv("DB_PASSWORD")
+    port = os.getenv("DB_PORT")
     query = state["sql_query"]
     result = execute_query(host, database, user, password, port, query)
 
