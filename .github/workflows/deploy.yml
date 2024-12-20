@@ -22,6 +22,9 @@ jobs:
       run: |
         pip install -r requirements.txt
 
+    - name: Set working directory
+      run: cd ./LLMTEST
+
     - name: Run script using Database and OpenAI API
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
