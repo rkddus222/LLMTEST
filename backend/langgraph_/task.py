@@ -23,7 +23,7 @@ def evaluate_user_question(user_question: str) -> str:
     prompt = ChatPromptTemplate.from_messages(
         [
             SystemMessage(
-                content=load_prompt("daquv_llm_localfinance/backend/prompts/question_evaluation/main_v1.prompt")
+                content=load_prompt("backend/prompts/question_evaluation/main_v1.prompt")
             ),
             (
                 "human",
@@ -53,7 +53,7 @@ def simple_conversation(user_question: str) -> str:
     prompt = ChatPromptTemplate.from_messages(
         [
             SystemMessage(
-                content=load_prompt("daquv_llm_localfinance/backend/prompts/general_conversation/main_v1.prompt")
+                content=load_prompt("backend/prompts/general_conversation/main_v1.prompt")
             ),
             (
                 "human",
@@ -73,12 +73,12 @@ def analyze_user_question(user_question: str) -> str:
     ANALYZE_PROMPT = ChatPromptTemplate.from_messages(
         [
             SystemMessage(
-                content=load_prompt("daquv_llm_localfinance/backend/prompts/question_analysis/main_v1.prompt")
+                content=load_prompt("backend/prompts/question_analysis/main_v1.prompt")
             ),
             (
                 "human",
                 "사용자 질문: {user_question}"
-                + load_prompt("daquv_llm_localfinance/backend/prompts/question_analysis/human_v1.prompt"),
+                + load_prompt("backend/prompts/question_analysis/human_v1.prompt"),
             ),
         ]
     )
@@ -101,7 +101,7 @@ def refine_user_question(user_question: str, user_question_analyze: str) -> str:
     REFINE_PROMPT = ChatPromptTemplate.from_messages(
         [
             SystemMessage(
-                content=load_prompt("daquv_llm_localfinance/backend/prompts/question_refinement/main_v1.prompt")
+                content=load_prompt("backend/prompts/question_refinement/main_v1.prompt")
             ),
             (
                 "human",
@@ -131,12 +131,12 @@ def clarify_user_question(
     prompt = ChatPromptTemplate.from_messages(
         [
             SystemMessage(
-                content=load_prompt("daquv_llm_localfinance/backend/prompts/additional_question/main_v1.prompt")
+                content=load_prompt("backend/prompts/additional_question/main_v1.prompt")
             ),
             (
                 "human",
                 "원래 사용자 질문:\n{user_question}\n\n초기 질문 분석:\n{user_question_analyze}\n\n이전 질문 기록:\n{collected_questions}\n\n"
-                + load_prompt("daquv_llm_localfinance/backend/prompts/additional_question/human_postfix_v1.prompt"),
+                + load_prompt("backend/prompts/additional_question/human_postfix_v1.prompt"),
             ),
         ]
     )
@@ -176,7 +176,7 @@ def create_query(
             print("user_question:", user_question)
             print("today:", today)
             # 프롬프트 로드 및 구성
-            prefix = load_prompt("daquv_llm_localfinance/backend/prompts/query_creation/prefix_v1.prompt").format(
+            prefix = load_prompt("backend/prompts/query_creation/prefix_v1.prompt").format(
                 user_question=user_question,
                 user_question_analyze=user_question_analyze,
                 today=today,
@@ -259,7 +259,7 @@ def execute_query(host, database, user, password, port, query):
 def business_conversation(user_question, sql_query, query_result) -> str:
     output_parser = StrOutputParser()
 
-    instruction = load_prompt("daquv_llm_localfinance/backend/prompts/sql_conversation/main_v1.prompt").format(
+    instruction = load_prompt("backend/prompts/sql_conversation/main_v1.prompt").format(
         sql_query=sql_query, query_result=query_result
     )
     prompt = ChatPromptTemplate.from_messages(
